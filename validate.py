@@ -223,7 +223,7 @@ if __name__ == '__main__':
   print('Loading PolyU-HRF dataset...')
   polyu_path = os.path.join(flags.polyu_dir_path, 'GroundTruth',
                             'PoreGroundTruth')
-  dataset = polyu.detection.Dataset(
+  dataset = polyu.Dataset(
       os.path.join(polyu_path, 'PoreGroundTruthSampleimage'),
       os.path.join(polyu_path, 'PoreGroundTruthMarked'),
       split=(15, 5, 10),
