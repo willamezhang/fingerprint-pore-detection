@@ -1,11 +1,11 @@
 import tensorflow as tf
 
 
-class Net:
+class FCN:
   """
   Pore detection model.
 
-  Net.predictions is the model's output op. It has shape
+  FCN.predictions is the model's output op. It has shape
   [batch_size, N - 16, M - 16, 1] for an input with shape
   [batch_size, N, M, 1]. Net.loss and Net.train are
   respectively the model's loss op and training step op,

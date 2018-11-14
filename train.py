@@ -3,7 +3,7 @@ import argparse
 import numpy as np
 import tensorflow as tf
 
-import model
+import models
 import polyu
 import utils
 import validate
@@ -17,12 +17,12 @@ def train(dataset, log_dir):
     patches_pl, labels_pl = utils.placeholder_inputs()
 
     # build train related ops
-    net = model.Net(patches_pl, FLAGS.dropout)
+    net = models.FCN(patches_pl, FLAGS.dropout)
     net.build_loss(labels_pl)
     net.build_train(FLAGS.learning_rate)
 
     # builds validation inference graph
-    val_net = model.Net(patches_pl, training=False, reuse=True)
+    val_net = models.FCN(patches_pl, training=False, reuse=True)
 
     # add summary to plot loss, f score, tdr and fdr
     f_score_pl = tf.placeholder(tf.float32, shape=())
