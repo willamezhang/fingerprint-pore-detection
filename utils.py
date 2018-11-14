@@ -37,24 +37,12 @@ def fill_feed_dict(dataset, patches_pl, labels_pl, batch_size):
   return feed_dict
 
 
-def create_dirs(log_dir_path,
-                batch_size,
-                learning_rate,
-                batch_size2=None,
-                learning_rate2=None):
+def create_dirs(log_dir_path, batch_size, learning_rate):
   import datetime
   timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
-  if batch_size2 is None or learning_rate2 is None:
-    # individual training
-    log_dir = os.path.join(
-        log_dir_path, 'bs-{}_lr-{:.0e}_t-{}'.format(batch_size, learning_rate,
-                                                    timestamp))
-  else:
-    # approximate joint training
-    log_dir = os.path.join(
-        log_dir_path, 'bs-{}x{}_lr-{:.0e}x{}_t-{}'.format(
-            batch_size, batch_size2, learning_rate, learning_rate2, timestamp))
-
+  log_dir = os.path.join(
+      log_dir_path, 'bs-{}_lr-{:.0e}_t-{}'.format(batch_size, learning_rate,
+                                                  timestamp))
   tf.gfile.MakeDirs(log_dir)
 
   return log_dir
