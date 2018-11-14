@@ -197,7 +197,7 @@ if __name__ == '__main__':
   import tensorflow as tf
 
   import polyu
-  from models import detection
+  import model
 
   parser = argparse.ArgumentParser()
   parser.add_argument(
@@ -234,7 +234,7 @@ if __name__ == '__main__':
   patches_pl, labels_pl = utils.placeholder_inputs()
 
   # builds inference graph
-  net = detection.Net(patches_pl, training=False)
+  net = model.Net(patches_pl, training=False)
 
   with tf.Session() as sess:
     print('Restoring model...')
