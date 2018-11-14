@@ -85,9 +85,9 @@ The results will most likely differ from the ones reported in the paper. To repr
 
 The options for validating the detection model are:
 ```
-usage: validate [-h] --polyu_dir_path POLYU_DIR_PATH --model_dir_path
-                          MODEL_DIR_PATH [--patch_size PATCH_SIZE]
-                          [--results_path RESULTS_PATH] [--seed SEED]
+usage: validate.py [-h] --polyu_dir_path POLYU_DIR_PATH --model_dir_path
+                   MODEL_DIR_PATH [--post POST] [--patch_size PATCH_SIZE]
+                   [--results_path RESULTS_PATH] [--seed SEED]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -95,11 +95,14 @@ optional arguments:
                         path to PolyU-HRF dataset
   --model_dir_path MODEL_DIR_PATH
                         logging directory
+  --post POST           how to post-process detections. Can be either
+                        'traditional' or 'proposed'
   --patch_size PATCH_SIZE
                         pore patch size
   --results_path RESULTS_PATH
                         path in which to save results
   --seed SEED           random seed
+
 ```
 
 ## Pre-trained models and reproducing paper results
