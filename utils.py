@@ -15,7 +15,7 @@ def placeholder_inputs():
 def fill_feed_dict(dataset, patches_pl, labels_pl, batch_size):
   '''
   Creates a tf feed_dict containing patches and corresponding labels from a
-  mini-batch of size batch_size sampled from dataset, possibly transforming it
+  mini-batch of size batch_size sampled from dataset.
   for online dataset augmentation.
 
   Args:
@@ -23,10 +23,9 @@ def fill_feed_dict(dataset, patches_pl, labels_pl, batch_size):
     patches_pl: tf placeholder for patches.
     labels_pl: tf placeholder for labels.
     batch_size: size of mini-batch to be sampled.
-    augment: whether or not this mini-batch should be transformed.
 
   Returns:
-    tf feed_dict containing possibly augmented patches and corresponding labels.
+    tf feed_dict containing patches and corresponding labels.
   '''
   patches_feed, labels_feed = dataset.next_batch(batch_size)
 
