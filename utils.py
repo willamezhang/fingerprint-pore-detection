@@ -13,7 +13,7 @@ def placeholder_inputs():
 
 
 def fill_feed_dict(dataset, patches_pl, labels_pl, batch_size):
-  '''
+  """
   Creates a tf feed_dict containing patches and corresponding labels from a
   mini-batch of size batch_size sampled from dataset.
   for online dataset augmentation.
@@ -26,7 +26,7 @@ def fill_feed_dict(dataset, patches_pl, labels_pl, batch_size):
 
   Returns:
     tf feed_dict containing patches and corresponding labels.
-  '''
+  """
   patches_feed, labels_feed = dataset.next_batch(batch_size)
 
   feed_dict = {
@@ -49,7 +49,7 @@ def create_dirs(log_dir_path, batch_size, learning_rate):
 
 
 def nms(centers, probs, bb_size, thr):
-  '''
+  """
   Converts each center in centers into center centered bb_size x bb_size
   bounding boxes and applies Non-Maximum-Suppression to them.
 
@@ -62,7 +62,7 @@ def nms(centers, probs, bb_size, thr):
   Returns:
     dets: np.array of NMS filtered detections.
     det_probs: np.array of corresponding detection probabilities.
-  '''
+  """
   area = bb_size * bb_size
   half_bb_size = bb_size // 2
 
@@ -165,7 +165,7 @@ def find_correspondences(descs1,
                          euclidean_weight=0,
                          transf=None,
                          thr=None):
-  '''
+  """
   Finds bidirectional correspondences between descs1 descriptors and
   descs2 descriptors. If thr is provided, discards correspondences
   that fail a distance ratio check with threshold thr. If pts1, pts2,
@@ -187,7 +187,7 @@ def find_correspondences(descs1,
   Returns:
     list of correspondence tuples (j, i, d) in which index j of
       descs2 corresponds with i of descs1 with distance d.
-  '''
+  """
   # compute descriptors' pairwise distances
   D = pairwise_distances(descs1, descs2)
 
@@ -246,7 +246,7 @@ def find_correspondences(descs1,
 
 def detect_pores(image, image_pl, predictions, half_patch_size, prob_thr,
                  inter_thr, sess):
-  '''
+  """
   Detects pores in an image. First, a pore probability map is computed
   with the tf predictions op. This probability map is then thresholded
   and converted to coordinates, which are filtered with NMS.
@@ -263,7 +263,7 @@ def detect_pores(image, image_pl, predictions, half_patch_size, prob_thr,
 
   Returns:
     detections for image in shape [N, 2]
-  '''
+  """
   # predict probability of pores
   pred = sess.run(
       predictions,

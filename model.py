@@ -2,7 +2,7 @@ import tensorflow as tf
 
 
 class Net:
-  '''
+  """
   Pore detection model.
 
   Net.predictions is the model's output op. It has shape
@@ -10,7 +10,7 @@ class Net:
   [batch_size, N, M, 1]. Net.loss and Net.train are
   respectively the model's loss op and training step op,
   if built with Net.build_loss and Net.build_train.
-  '''
+  """
 
   def __init__(self,
                inputs,
@@ -18,7 +18,7 @@ class Net:
                reuse=tf.AUTO_REUSE,
                training=True,
                scope='detection'):
-    '''
+    """
     Args:
       inputs: input placeholder of shape [None, None, None, 1].
       dropout_rate: if None, applies no dropout. Otherwise,
@@ -27,7 +27,7 @@ class Net:
       training: whether net is training. Required for dropout
         and batch normalization.
       scope: model's variable scope.
-    '''
+    """
     with tf.variable_scope(scope, reuse=reuse):
       # reduction convolutions
       net = inputs
@@ -75,7 +75,7 @@ class Net:
       self.predictions = tf.nn.sigmoid(self.logits)
 
   def build_loss(self, labels):
-    '''
+    """
     Builds the model's loss node op. The loss is the
     cross-entropy between the model's predictions and
     the labels.
@@ -85,7 +85,7 @@ class Net:
 
     Returns:
       the loss node op.
-    '''
+    """
     # reshape labels to be compatible with logits
     labels = tf.reshape(labels, tf.shape(self.logits))
 
@@ -97,7 +97,7 @@ class Net:
     return self.loss
 
   def build_train(self, learning_rate):
-    '''
+    """
     Builds the model's training step op. It minimizes the
     model's loss with Stochastic Gradient Descent (SGD) with
     an exponentially decayed learning rate and updates the means
@@ -105,7 +105,7 @@ class Net:
 
     Args:
       learning_rate: initial SGD learning rate.
-    '''
+    """
     global_step = tf.Variable(1, name='global_step', trainable=False)
     learning_rate = tf.train.exponential_decay(
         learning_rate,

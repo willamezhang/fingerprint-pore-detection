@@ -82,7 +82,7 @@ class _Dataset:
               queue.append((ngh, anchor))
 
   def next_batch(self, batch_size, shuffle=None, incomplete=None):
-    '''
+    """
     Sample next batch, of size 'batch_size', of image patches.
 
     Args:
@@ -92,7 +92,7 @@ class _Dataset:
 
     Returns:
       The sampled patch batch and corresponding labels as np arrays.
-    '''
+    """
     # determine shuffle and incomplete behaviors
     if shuffle is None:
       shuffle = self._shuffle_behavior
@@ -145,7 +145,7 @@ class _Dataset:
       return self._to_patches(self._perm[start:end])
 
   def next_image_batch(self, batch_size, shuffle=None, incomplete=None):
-    '''
+    """
     Sample next batch, of size 'batch_size', of images.
 
     Args:
@@ -155,7 +155,7 @@ class _Dataset:
 
     Returns:
       The sampled image batch and corresponding labels as np arrays.
-    '''
+    """
     # determine shuffle and incomplete behaviors
     if shuffle is None:
       shuffle = self._shuffle_behavior
@@ -209,7 +209,7 @@ class _Dataset:
       return self._images[start:end], self._labels[start:end]
 
   def _to_patches(self, indices):
-    '''
+    """
     Retrieves image patches, on demand, corresponding to given indices.
     A patch of size WINDOW_SIZE is centered in the i-th row of the j-th column of the k-th image (of dimensions ROWS x COLS) according to the given index I:
       k = I / ((ROWS - WINDOW_SIZE) * (COLS - WINDOW_SIZE))
@@ -223,7 +223,7 @@ class _Dataset:
         patches: Windows corresponding to the given indices.
         labels: Labels of the returned patches.
 
-    '''
+    """
     # patches (samples) and labels
     size = self.patch_size
     patches = np.empty([indices.shape[0], size, size], np.float32)
@@ -257,13 +257,13 @@ class _Dataset:
 
 
 class Dataset:
-  '''
+  """
   PolyU-HRF detection dataset handler. Contains a _Dataset for
   training and, depending on how it splits the entire dataset,
   another one for validation and another for testing. It
   converts ground truth coordinates into region labels according
   to label_mode and label_size.
-  '''
+  """
 
   def __init__(self,
                images_folder_path,
@@ -274,7 +274,7 @@ class Dataset:
                label_size=3,
                should_shuffle=True,
                one_hot=False):
-    '''
+    """
     Args:
       images_folder_path: path from which to load images.
       labels_folder_path: path from which to label txt files.
@@ -300,7 +300,7 @@ class Dataset:
         between batches.
       one_hot: whether the labels should be provided as one hot
         vectors or with integer values.
-    '''
+    """
     self._images = utils.load_images(images_folder_path)
     self._labels = self._load_labels(labels_folder_path)
 

@@ -5,7 +5,7 @@ import utils
 
 
 def by_patches(sess, preds, batch_size, patches_pl, labels_pl, dataset):
-  '''
+  """
   Computes detection parameters that optimize the patch-based keypoint
   detection F-score in the dataset with a grid search. This is done
   efficiently, by sorting probability scores and iterating over them.
@@ -23,7 +23,7 @@ def by_patches(sess, preds, batch_size, patches_pl, labels_pl, dataset):
     best_f_score: value of best found F-score.
     best_fdr: corresponding value of False Detection Rate.
     best_tdr: corresponding value of True Detection Rate.
-  '''
+  """
   # initialize dataset statistics
   true_preds = []
   false_preds = []
@@ -92,7 +92,7 @@ def by_images(sess,
               dataset,
               prob_thrs=None,
               discard=False):
-  '''
+  """
   Computes detection parameters that optimize the keypoint detection
   F-score in the dataset with a grid search. This differs from
   by_patches because images are traditionally post-processed.
@@ -115,7 +115,7 @@ def by_images(sess,
       F-score.
     best_prob_thr: probability threshold that achieves found
       F-score.
-  '''
+  """
   patch_size = dataset.patch_size
   half_patch_size = patch_size // 2
   preds = []

@@ -111,7 +111,7 @@ def main():
       patch_size=FLAGS.patch_size,
       label_mode=FLAGS.label_mode,
       label_size=FLAGS.label_size)
-  print('Loaded.')
+  print('Loaded')
 
   # train
   train(dataset, log_dir)
