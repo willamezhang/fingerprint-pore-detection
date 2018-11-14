@@ -49,7 +49,7 @@ def train(dataset, log_dir):
 
       for step in range(1, FLAGS.steps + 1):
         feed_dict = utils.fill_feed_dict(dataset.train, patches_pl, labels_pl,
-                                         FLAGS.batch_size, FLAGS.augment)
+                                         FLAGS.batch_size)
 
         _, loss_value = sess.run([net.train, net.loss], feed_dict=feed_dict)
 
@@ -62,9 +62,9 @@ def train(dataset, log_dir):
         # evaluate the model periodically
         if step % 1000 == 0:
           print('Evaluation:')
-          f_score, fdr, tdr = validate.detection.by_patches(
-              sess, val_net.predictions, FLAGS.batch_size, patches_pl,
-              labels_pl, dataset.val)
+          f_score, fdr, tdr = validate.by_patches(sess, val_net.predictions,
+                                                  FLAGS.batch_size, patches_pl,
+                                                  labels_pl, dataset.val)
           print('TDR = {}'.format(tdr))
           print('FDR = {}'.format(fdr))
           print('F score = {}'.format(f_score))
@@ -130,10 +130,6 @@ if __name__ == '__main__':
       '--log_dir_path', type=str, default='log', help='logging directory')
   parser.add_argument(
       '--dropout', type=float, help='dropout rate in last convolutional layer')
-  parser.add_argument(
-      '--augment',
-      action='store_true',
-      help='use this flag to perform dataset augmentation')
   parser.add_argument(
       '--tolerance', type=int, default=5, help='early stopping tolerance')
   parser.add_argument('--batch_size', type=int, default=256, help='batch size')
