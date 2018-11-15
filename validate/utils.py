@@ -3,7 +3,13 @@ import numpy as np
 import utils
 
 
-def by_patches(sess, preds, batch_size, patches_pl, labels_pl, dataset):
+def by_patches(sess,
+               preds,
+               batch_size,
+               patches_pl,
+               labels_pl,
+               dataset,
+               thrs=None):
   """
   Computes detection parameters that optimize the patch-based keypoint
   detection F-score in the dataset with a grid search. This is done
@@ -17,6 +23,8 @@ def by_patches(sess, preds, batch_size, patches_pl, labels_pl, dataset):
     labels_pl: label input placeholder to retrieve labels from
       tf input feed dict.
     dataset: dataset to perform grid-search on.
+    thrs: grid-search threshold space. if None, defaults to
+      {0.01, 0.02, ..., 1}.
 
   Returns:
     best_f_score: value of best found F-score.
@@ -60,8 +68,8 @@ def by_patches(sess, preds, batch_size, patches_pl, labels_pl, dataset):
   false_pointer = 0
 
   eps = 1e-5
-  # TODO: make `thrs` be param to accomodate su
-  thrs = np.arange(1.01, -0.01, -0.01)
+  if thrs is None:
+    thrs = np.arange(1.01, -0.01, -0.01)
   for thr in thrs:
     # compute true positives
     while true_pointer < len(true_preds) and true_preds[true_pointer] >= thr:

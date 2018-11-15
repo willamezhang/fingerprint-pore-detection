@@ -6,9 +6,18 @@ import cv2
 from scipy.ndimage.measurements import label as connected_comps
 
 
-def placeholder_inputs():
+def to_patches(img, patch_size):
+  patches = []
+  for i in range(img.shape[0] - patch_size + 1):
+    for j in range(img.shape[1] - patch_size + 1):
+      patches.append(img[i:i + patch_size, j:j + patch_size])
+
+  return patches
+
+
+def placeholder_inputs(labels_dim=1):
   images = tf.placeholder(tf.float32, [None, None, None, 1], name='images')
-  labels = tf.placeholder(tf.float32, [None, 1], name='labels')
+  labels = tf.placeholder(tf.float32, [None, labels_dim], name='labels')
   return images, labels
 
 
