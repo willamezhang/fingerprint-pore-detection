@@ -150,7 +150,7 @@ optional arguments:
 ### Validation
 To evaluate the trained model, run:
 ```
-python3 validate.cnn --polyu_dir_path polyu_hrf --model_dir_path log/[cnn_model_dir]
+python3 -m validate.cnn --polyu_dir_path polyu_hrf --model_dir_path log/[cnn_model_dir]
 ```
 The same considerations about reproducibility from FCN models are valid here. Read above and below for more info.
 Options for validation here are:
