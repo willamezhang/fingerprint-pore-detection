@@ -176,10 +176,15 @@ optional arguments:
 ## Pre-trained models and reproducing paper results
 The pre-trained [FCN]() and the [trained model of Su _et al._'s reimplementation]() are required to ensure that you get the exact same results as those of the paper. After downloading them, follow the validation steps for each model, replacing model directory paths where appropriate.
 
-## Detecting pores in single images
+## Evaluating arbitrary detections with the proposed protocol
+To evaluate arbitrary detections with the proposed protocol, generate `txt` detection files in PolyU-HRF _GroundTruth_ format (1-indexed, "pixel_row pixel_column" integer coordinates, one detection per line) for the images in the protocol test set (the last ten images of _GroundTruth_ in lexicographic order) and put them in a folder, say `detections`. To compute the metrics using the evaluation protocol, run:
+```
+python3 -m validate.detections polyu_hrf/GroundTruth/PoreGroundTruth/PoreGroundTruthMarked detections
+```
+This will output the true detection rate (TDR), false detection rate (FDR), and corresponding F-score. For more details, read the paper.
 
 ## Reference
-If you find the code in this repository useful for your research, please consider citing:
+If you find the code in this repository useful for your research or use the proposed evaluation protocol, please consider citing:
 ```
 ```
 

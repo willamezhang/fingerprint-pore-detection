@@ -95,7 +95,18 @@ def by_patches(sess,
 
 
 def compute_statistics(pores, detections):
-  """
+  """Computes true detection rate (TDR), false detection rate (FDR) and the corresponding F-score for the given groundtruth and detections.
+
+  Args:
+    pores: pore groundtruth coordinates in format [N, P, 2].
+      Second dimension must be np.arrays.
+    detections: detection coordinates in the same format as pores, ie
+      [N, D, 2] and second dimension np.arrays.
+
+  Returs:
+    f_score: F-score for the given detections and groundtruth.
+    tdr: TDR for the given detections and groundtruth.
+    fdr: FDR for the given detections and groundtruth.
   """
   # find correspondences between detections and pores
   total_pores = 0
