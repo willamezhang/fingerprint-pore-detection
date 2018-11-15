@@ -274,20 +274,29 @@ def detect_pores(image, image_pl, predictions, half_patch_size, prob_thr,
   pred = np.pad(pred, ((half_patch_size, half_patch_size),
                        (half_patch_size, half_patch_size)), 'constant')
 
-  # convert into coordinates
-  pick = pred > prob_thr
-  coords = np.argwhere(pick)
-  probs = pred[pick]
+  detections = post_process_proposed(predictions, prob_thr, inter_thr)
 
-  # filter detections with nms
+  return detections
+
+
+def post_process_proposed(predictions, prob_thr, inter_thr):
+  # threshold and convert into coodinates
+  pick = predictions > prob_thr
+  coords = np.argwhere(pick)
+  probs = predictions[pick]
+
+  # filter with nms
   dets, _ = nms(coords, probs, 7, inter_thr)
 
   return dets
 
 
-def unify_connected_components(proposals_map):
-  comps, labels = connected_comps(proposals_map)
+def post_process_traditional(proposals, threshold=0.5):
+  # threshold predictions
+  thresholded = proposals > threshold
 
+  # merge connected components
+  comps, labels = connected_comps(thresholded)
   dets = []
   for label in range(1, labels + 1):
     coords = np.argwhere(comps == label)

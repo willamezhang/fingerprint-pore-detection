@@ -36,21 +36,21 @@ or run, for GPU usage, which requires the [Tensorflow GPU dependencies](https://
 pip install -r gpu-requirements.txt
 ```
 
-## Training the model
-Throught our experiments, we will assume that PolyU-HRF is inside a local folder name `polyu_hrf`. To train a pore detection network with our best found parameters, run:
+## Training the FCN model
+Throught our experiments, we will assume that PolyU-HRF is inside a local folder name `polyu_hrf`. To train a pore detection FCN with our best found parameters, run:
 ```
-python3 train.py --polyu_dir_path polyu_hrf --log_dir_path log --dropout 0.2
+python3 -m train.fcn --polyu_dir_path polyu_hrf --log_dir_path log --dropout 0.2
 ```
 This will create a folder inside `log` for the trained model's resources. We will call it `[det_model_dir]` for the rest of the instructions.
 
 The options for training the detection net are:
 ```
-usage: train.py [-h] --polyu_dir_path POLYU_DIR_PATH
-                [--learning_rate LEARNING_RATE] [--log_dir_path LOG_DIR_PATH]
-                [--dropout DROPOUT] [--tolerance TOLERANCE]
-                [--batch_size BATCH_SIZE] [--steps STEPS]
-                [--label_size LABEL_SIZE] [--label_mode LABEL_MODE]
-                [--patch_size PATCH_SIZE] [--seed SEED]
+usage: train/fcn.py [-h] --polyu_dir_path POLYU_DIR_PATH
+                    [--learning_rate LEARNING_RATE] [--log_dir_path LOG_DIR_PATH]
+                    [--dropout DROPOUT] [--tolerance TOLERANCE]
+                    [--batch_size BATCH_SIZE] [--steps STEPS]
+                    [--label_size LABEL_SIZE] [--label_mode LABEL_MODE]
+                    [--patch_size PATCH_SIZE] [--seed SEED]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -76,18 +76,18 @@ optional arguments:
 ```
 for more details, refer to the code documentation.
 
-## Validating the trained model
+## Validating the trained FCN model
 To evaluate the model trained above, run:
 ```
-python3 validate --polyu_dir_path polyu_hrf --model_dir_path log/[det_model_dir]
+python3 validate.fcn --polyu_dir_path polyu_hrf --model_dir_path log/[det_model_dir]
 ```
 The results will most likely differ from the ones reported in the paper. To reproduce those, read below about the trained models.
 
 The options for validating the detection model are:
 ```
-usage: validate.py [-h] --polyu_dir_path POLYU_DIR_PATH --model_dir_path
-                   MODEL_DIR_PATH [--post POST] [--patch_size PATCH_SIZE]
-                   [--results_path RESULTS_PATH] [--seed SEED]
+usage: validate/fcn.py [-h] --polyu_dir_path POLYU_DIR_PATH --model_dir_path
+                       MODEL_DIR_PATH [--post POST] [--patch_size PATCH_SIZE]
+                       [--results_path RESULTS_PATH] [--seed SEED]
 
 optional arguments:
   -h, --help            show this help message and exit
