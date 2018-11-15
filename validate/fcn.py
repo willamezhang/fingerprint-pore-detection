@@ -17,7 +17,7 @@ def generate_proposals(sess, pred_op, patches_pl, dataset, discard=True):
       method is capable of detecting.
 
   Returns:
-    pores: ground truth pore coordinates in shape [N, 2].
+    pores: ground truth pore coordinates in shape [N, P, 2].
     preds: proposals map in shape [N, rows, cols] if discard is true, [N, valid_rows, valid_cols] otherwise.
   """
   patch_size = dataset.patch_size
