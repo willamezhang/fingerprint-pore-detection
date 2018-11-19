@@ -186,6 +186,12 @@ This will output the true detection rate (TDR), false detection rate (FDR), and 
 ## Reference
 If you find the code in this repository useful for your research or use the proposed evaluation protocol, please consider citing:
 ```
+@article{dahia2018fcn,
+  title={Improving Fingerprint Pore Detection with a Small FCN},
+  author={Dahia, Gabriel and Segundo, Maur{\'\i}cio Pamplona},
+  journal={arXiv preprint arXiv:1811.06846},
+  year={2018}
+}
 ```
 
 ## License
