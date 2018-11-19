@@ -1,5 +1,5 @@
 # Fingerprint pore detection
-This repository contains the original implementation of the fingerprint pore detection from ["Improving Fingerprint Pore Detection with a Small FCN"](). It also contains code for repeating our evaluation protocol for pore detection in PolyU-HRF _GroundTruth_ and our unofficial reimplementation of ["A deep learning approach towards pore extraction for high-resolution fingerprint recognition"](https://ieeexplore.ieee.org/document/7952518/).
+This repository contains the original implementation of the fingerprint pore detection from ["Improving Fingerprint Pore Detection with a Small FCN"](https://arxiv.org/abs/1811.06846). It also contains code for repeating our evaluation protocol for pore detection in PolyU-HRF _GroundTruth_ and our unofficial reimplementation of ["A deep learning approach towards pore extraction for high-resolution fingerprint recognition"](https://ieeexplore.ieee.org/document/7952518/).
 
 ## PolyU-HRF dataset
 The Hong Kong Polytechnic University (PolyU) High-Resolution-Fingerprint (HRF) Database is a high-resolution fingerprint dataset for fingerprint recognition. We ran all of our experiments in the PolyU-HRF dataset, so it is required to reproduce them. PolyU-HRF can be obtained by following the instructions from its authors [here](http://www4.comp.polyu.edu.hk/~biometrics/HRF/HRF_old.htm).
