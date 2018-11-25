@@ -111,6 +111,7 @@ optional arguments:
 ```
 
 ## Su _et al._'s (2017) CNN reimplementation model
+### Training
 To train a pore detection CNN as specified in ["A deep learning approach towards pore extraction for high-resolution fingerprint recognition"](https://ieeexplore.ieee.org/document/7952518/), run:
 ```
 python3 -m train.cnn --polyu_dir_path polyu_hrf --log_dir_path log
