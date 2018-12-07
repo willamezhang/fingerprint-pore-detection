@@ -175,7 +175,7 @@ optional arguments:
 ```
 
 ## Pre-trained models and reproducing paper results
-The pre-trained [FCN]() and the [trained model of Su _et al._'s reimplementation]() are required to ensure that you get the exact same results as those of the paper. After downloading them, follow the validation steps for each model, replacing model directory paths where appropriate.
+The trained models for the [FCN](https://drive.google.com/file/d/15GRs23KQVc_yhJzL1fVzZ8uI4-U-xqcg/view?usp=sharing) and [Su _et al._'s CNN reimplementation]() are required to ensure that you get the exact same results as those of the paper. After downloading them, follow the validation steps for each model, replacing model directory paths where appropriate.
 
 ## Evaluating arbitrary detections with the proposed protocol
 To evaluate arbitrary detections with the proposed protocol, generate `txt` detection files in PolyU-HRF _GroundTruth_ format (1-indexed, "pixel_row pixel_column" integer coordinates, one detection per line) for the images in the protocol test set (the last ten images of _GroundTruth_ in lexicographic order) and put them in a folder, say `detections`. To compute the metrics using the evaluation protocol, run:
