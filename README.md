@@ -110,6 +110,33 @@ optional arguments:
 
 ```
 
+### Detecting pores in arbitrary input images
+To detect pores in a arbitrary fingerprint image named `image.png` with the trained FCN model stored in a folder `log/model_dir`, simply run:
+```
+python3 detect.py --image_path image.png --model_dir_path log/model_dir
+```
+
+This script has the parameters that achieve best results for the trained model provided below as default, but they can be passed as arguments for each run. Other options for it are:
+```
+usage: detect.py [-h] --image_path IMAGE_PATH --model_dir_path MODEL_DIR_PATH
+                 [--patch_size PATCH_SIZE] [--save_path SAVE_PATH]
+                 [--prob_thr PROB_THR] [--inter_thr INTER_THR]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --image_path IMAGE_PATH
+                        path to image in which to detect pores
+  --model_dir_path MODEL_DIR_PATH
+                        path from which to restore trained model
+  --patch_size PATCH_SIZE
+                        pore patch size
+  --save_path SAVE_PATH
+                        path to file in which detections should be saved
+  --prob_thr PROB_THR   probability threshold to filter detections
+  --inter_thr INTER_THR
+                        nms intersection threshold
+```
+
 ## Su _et al._'s (2017) CNN reimplementation model
 ### Training
 To train a pore detection CNN as specified in ["A deep learning approach towards pore extraction for high-resolution fingerprint recognition"](https://ieeexplore.ieee.org/document/7952518/), run:
