@@ -1,5 +1,5 @@
 # Fingerprint pore detection
-This repository contains the original implementation of the fingerprint pore detection from ["Improving Fingerprint Pore Detection with a Small FCN"](https://arxiv.org/abs/1811.06846). It also contains code for repeating our evaluation protocol for pore detection in PolyU-HRF _GroundTruth_ and our unofficial reimplementation of ["A deep learning approach towards pore extraction for high-resolution fingerprint recognition"](https://ieeexplore.ieee.org/document/7952518/).
+This repository contains the original implementation of the fingerprint pore detection from "Improving Fingerprint Pore Detection with a Small FCN". It also contains code for repeating our evaluation protocol for pore detection in PolyU-HRF _GroundTruth_ and our unofficial reimplementation of ["A deep learning approach towards pore extraction for high-resolution fingerprint recognition"](https://ieeexplore.ieee.org/document/7952518/).
 
 ## PolyU-HRF dataset
 The Hong Kong Polytechnic University (PolyU) High-Resolution-Fingerprint (HRF) Database is a high-resolution fingerprint dataset for fingerprint recognition. We ran all of our experiments in the PolyU-HRF dataset, so it is required to reproduce them. PolyU-HRF can be obtained by following the instructions from its authors [here](http://www4.comp.polyu.edu.hk/~biometrics/HRF/HRF_old.htm).
@@ -202,7 +202,7 @@ optional arguments:
 ```
 
 ## Pre-trained models and reproducing paper results
-The trained models for the [FCN](https://drive.google.com/file/d/15GRs23KQVc_yhJzL1fVzZ8uI4-U-xqcg/view?usp=sharing) and [Su _et al._'s CNN reimplementation](https://drive.google.com/file/d/1Qb1s7g1kcMYPdkOoUjXOlc6iNn1cCrHq/view?usp=sharing) are required to ensure that you get the exact same results as those of the paper. After downloading them, follow the validation steps for each model, replacing model directory paths where appropriate.
+The trained models for the FCN and Su _et al._'s CNN reimplementation are required to ensure that you get the exact same results as those of the paper. The FCN model is available in `log/dropout-0.2/bs-256_lr-1e-01_t-2018-11-12_190400`. Unfortunately, Su _et al._'s model does not fit the CMT supplementary file size limit and is not available here. Follow the validation steps for each model, replacing model directory paths where appropriate to obtain the results.
 
 ## Evaluating arbitrary detections with the proposed protocol
 To evaluate arbitrary detections with the proposed protocol, generate `txt` detection files in PolyU-HRF _GroundTruth_ format (1-indexed, "pixel_row pixel_column" integer coordinates, one detection per line) for the images in the protocol test set (the last ten images of _GroundTruth_ in lexicographic order) and put them in a folder, say `detections`. To compute the metrics using the evaluation protocol, run:
@@ -210,17 +210,3 @@ To evaluate arbitrary detections with the proposed protocol, generate `txt` dete
 python3 -m validate.detections polyu_hrf/GroundTruth/PoreGroundTruth/PoreGroundTruthMarked detections
 ```
 This will output the true detection rate (TDR), false detection rate (FDR), and corresponding F-score. In order for this to match the proposed protocol, pores which are outside the detectable region for the evaluated method must be discarded beforehand. For more details, read the paper.
-
-## Reference
-If you find the code in this repository useful for your research or use the proposed evaluation protocol, please consider citing:
-```
-@article{dahia2018improving,
-  title={Improving Fingerprint Pore Detection with a Small FCN},
-  author={Dahia, Gabriel and Segundo, Maur{\'\i}cio Pamplona},
-  journal={arXiv preprint arXiv:1811.06846},
-  year={2018}
-}
-```
-
-## License
-See the [LICENSE](LICENSE) file for details.
