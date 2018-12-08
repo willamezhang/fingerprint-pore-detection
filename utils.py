@@ -283,7 +283,7 @@ def detect_pores(image, image_pl, predictions, half_patch_size, prob_thr,
   pred = np.pad(pred, ((half_patch_size, half_patch_size),
                        (half_patch_size, half_patch_size)), 'constant')
 
-  detections = post_process_proposed(predictions, prob_thr, inter_thr)
+  detections = post_process_proposed(pred, prob_thr, inter_thr)
 
   return detections
 
