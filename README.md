@@ -209,7 +209,7 @@ To evaluate arbitrary detections with the proposed protocol, generate `txt` dete
 ```
 python3 -m validate.detections polyu_hrf/GroundTruth/PoreGroundTruth/PoreGroundTruthMarked detections
 ```
-This will output the true detection rate (TDR), false detection rate (FDR), and corresponding F-score. For more details, read the paper.
+This will output the true detection rate (TDR), false detection rate (FDR), and corresponding F-score. In order for this to match the proposed protocol, pores which are outside the detectable region for the evaluated method must be discarded beforehand. For more details, read the paper.
 
 ## Reference
 If you find the code in this repository useful for your research or use the proposed evaluation protocol, please consider citing:
