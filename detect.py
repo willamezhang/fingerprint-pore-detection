@@ -24,7 +24,7 @@ def main():
       print('Done')
 
       print('Loading image...')
-      image = cv2.imread(FLAGS.image_path, 0)
+      image = utils.load_image(FLAGS.image_path)
       print('Done')
 
       print('Detecing pores...')
